@@ -13,3 +13,20 @@ The above chart contains the encryption workflow when a Sender tries to send a m
 ### Flow Chat of the decryption algorithm.
 ![decryption](https://github.com/aaravjn/quantum-secure-email-client/assets/73699304/536bc67b-ae10-44cd-a897-d3bf85317d0b) <br>
 The receiver takes the received encrypted message and the encrypted key to verify it against the tag to check whether they still match. If yes, the receiver decrypts the secret key using its private key by applying Crystal-Kyber. After obtaining the secret key, it decrypts the message by applying AES-256 to obtain the original message.
+
+
+### Project setup Guide
+Install <strong>Rust</strong> and <strong>Cargo</strong> in your system. For Linux and MacOS, execute the below command. <br>
+```
+curl https://sh.rustup.rs -sSf | sh
+```
+
+Import the project source code from github
+```
+git clone https://github.com/aaravjn/quantum-secure-email-client.git
+```
+
+Build and Run the Email by executing the following command in the `quant_sec_client` folder
+```
+cargo run
+``` 
