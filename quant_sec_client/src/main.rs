@@ -1,6 +1,10 @@
+mod email;
+mod schema;
+mod utils;
+
 use rustyline::error::ReadlineError;
 use rustyline::{DefaultEditor, Result};
-
+use crate::email::{get_emails};
 
 static mut SHOULD_CONTINUE: bool = true;
 
@@ -21,9 +25,13 @@ fn handle_command(cmnd : &str) {
         },
         "list-emails" => {
             // lists all the emails recieved to the user (requires a login)
+            get_emails();
         },
         "send" => {
             // send an email to a user using it's unique userID
+        },
+        "clear-inbox" => {
+            // delete all emails
         }
         "exit" => {
             unsafe {
