@@ -1,0 +1,11 @@
+usage: [COMMAND]
+
+manuel format:- 
+[COMMAND]   :[DESCRIPTION]
+
+~ create-account   : Creates a new user account. Generates a new CRYSTALS-Kyber key pair and registeres it in the global database.
+~ sync    : Retrives new emails from the inbox of the user stored in the server. The emails are always encrypted in the server.
+~ list-emails   : Lists recent emails from the inbox. :: -c [Number of emails to be shown. Default value = 5]
+~ compose   : Create and send a new email to a particular sender.
+~ clear-inbox   : Delete all the emails in your inbox
+~ exit  : Exit out of the application.

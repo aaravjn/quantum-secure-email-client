@@ -1,25 +1,38 @@
 from termcolors import Bcolors
+import utils
+import user_email
+
+username = None
+serverHost = None
 
 
 def handle_command(uinp):
-    if uinp == "command":
-        pass
+    if uinp == "help":
+        utils.help()
     elif uinp == "create-account":
-        pass
-    elif uinp == "login":
-        pass
+        utils.create_account()
     elif uinp == "sync":
-        pass
+        user_email.sync_emails(username, serverHost)
     elif uinp == "list-emails":
-        pass
-    elif uinp == "send":
-        pass
+        user_email.show_emails(username)
+    elif uinp == "compose":
+        user_email.composeEmail(username)
+    elif uinp == "login":
+        while True:
+            login_username = input("Enter the username: ")
+            if utils.handle_login(login_username):
+                username = login_username
+                break
+            else:
+                print("The account doesn't exist on the device")
     elif uinp == "clear-inbox":
-        pass
+        utils.clearInbox(username, serverHost)
     elif uinp == "exit":
-        pass
+        print("Bye!")
+        exit(0)
     else:
         print(Bcolors.ERROR + "Invalid command" + Bcolors.ENDC)
+
 
 def main():
     print("Welcome!")
