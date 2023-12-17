@@ -26,6 +26,8 @@ def create_account(host):
 
         if response['Status'] == 'Positive':
             break
+        else:
+            print("The username already exists")
     
     # Get a password from the user
     user_password = ''
@@ -54,7 +56,6 @@ def create_account(host):
             "Kyber Private Key": str(base64.b64encode(private_key), encoding='utf-8'),
             "Password": user_password
         }
-        print(user_data)
         json_object = json.dumps(user_data, indent=4)
         f.write(json_object)
 

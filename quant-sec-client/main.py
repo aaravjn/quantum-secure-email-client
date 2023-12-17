@@ -2,11 +2,23 @@ from termcolors import Bcolors
 import utils
 import user_email
 
+
 username = None
 serverHost = None
 
 
+def main():
+    print("Welcome!")
+
+    while True:
+        uinp = input(Bcolors.BOLDPURPLE + "> " + Bcolors.ENDC)
+        handle_command(uinp)
+
+
 def handle_command(uinp):
+
+    global username, serverHost
+
     if uinp == "help":
         utils.help()
     elif uinp == "create-account":
@@ -35,13 +47,6 @@ def handle_command(uinp):
     else:
         print(Bcolors.ERROR + "Invalid command" + Bcolors.ENDC)
 
-
-def main():
-    print("Welcome!")
-
-    while True:
-        uinp = input(Bcolors.BOLDPURPLE + "> " + Bcolors.ENDC)
-        handle_command(uinp)
 
 
 if __name__=='__main__':
