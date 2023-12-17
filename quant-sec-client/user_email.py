@@ -9,8 +9,26 @@ import crypto.crypto as crypto
 
 config = dotenv_values(".env")
 
-def create_and_send_email(reciever):
-    pass
+def create_and_send_email(username, serverHost):
+    reciever = input("Enter the reciever username: ")
+    subject = input("Enter the subject of matter: ")
+    body = input("Type your message: ")
+
+    reciever_public_key = requests.get("http://" + serverHost + "/quantserver/get-public-key/", params={
+        "username": reciever
+    }).json()['Public Key']
+
+    encrypted_subject = crypto.encrypt(subject, reciever_public_key)
+    encrypted_body = crypto.encrypt(body, reciever_public_key)
+
+    requests.post(
+        "http://" + serverHost + "/quantserver/post-email",
+        data={
+            "reciever_username": reciever,
+            "sender_username": username,
+            "subject": ""
+        }
+    )
 
 def create_table(username):
     mydb = mysql.connector.connect(
@@ -30,7 +48,6 @@ def create_table(username):
 
 def show_emails(username, numberOfEmails = 5):
     # Shows the first 5 emails in the inbox
-    
     mydb = mysql.connector.connect(
         host=config["HOST"],
         user=config["USER"],
@@ -54,6 +71,13 @@ def show_emails(username, numberOfEmails = 5):
         print("--------------------------------\n\n")
 
 def sync_emails(username, serverHost):
+    if username == None:
+        print("You need to login first")
+        return
+    if serverHost == None:
+        print("You need to connect to a server first")
+        return
+
     mydb = mysql.connector.connect(
         host=config["HOST"],
         user=config["USER"],
@@ -82,7 +106,6 @@ def sync_emails(username, serverHost):
         print(response['Message'])
     
     # Put all the emails in the database
-    
     for email in response['Emails']:
         # decrypt the contents
         email['Subject'] = crypto.decrypt(email['Subject'])
@@ -93,7 +116,6 @@ def sync_emails(username, serverHost):
             ({response['Emails']['sender']}, {response['Emails']['sender']}, {email['Subject']}, {email['Body']}, {email['datetime_of_arrival']})
             """
         )
-
     print("Succesfully synced all the emails")
 
 def composeEmail(username):

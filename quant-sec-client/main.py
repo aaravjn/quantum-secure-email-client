@@ -10,11 +10,13 @@ def handle_command(uinp):
     if uinp == "help":
         utils.help()
     elif uinp == "create-account":
-        utils.create_account()
+        utils.create_account(serverHost)
     elif uinp == "sync":
         user_email.sync_emails(username, serverHost)
     elif uinp == "list-emails":
         user_email.show_emails(username)
+    elif uinp == "connect":
+        serverHost = input("Please enter the host server domain: ")
     elif uinp == "compose":
         user_email.composeEmail(username)
     elif uinp == "login":
