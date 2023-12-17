@@ -25,14 +25,14 @@ def getUserPublicKey(request):
             "Message": "The user doesn't exist",
             "Status": "Negative"
         })
-    else:
-        serializer = UserSerializer(user[0]).data
-        return Response({
-            "Message": "Request succesfully executed",
-            "Status": "Positive",
-            "Name": serializer["name"],
-            "Public Key": serializer["public_key"]
-        })
+    
+    serializer = UserSerializer(user[0]).data
+    return Response({
+        "Message": "Request succesfully executed",
+        "Status": "Positive",
+        "Name": serializer["name"],
+        "Public Key": serializer["public_key"]
+    })
 
 
 @api_view(['POST'])
