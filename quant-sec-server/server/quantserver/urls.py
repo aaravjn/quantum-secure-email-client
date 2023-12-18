@@ -7,5 +7,5 @@ urlpatterns = [
     url("register-user", vi.registerUser),
     url("check-uniqueness", vi.checkForUniqueness),
     url("get-inbox", vi.returnInbox),
-    url("clear-inbox", vi.clearInbox)
+    url("clear-inbox", vi.clearInbox),
 ]

@@ -16,7 +16,6 @@ def main():
 
 
 def handle_command(uinp):
-
     global username, serverHost
 
     if uinp == "help":
@@ -30,7 +29,7 @@ def handle_command(uinp):
     elif uinp == "connect":
         serverHost = input("Please enter the host server domain: ")
     elif uinp == "compose":
-        user_email.composeEmail(username)
+        user_email.create_and_send_email(username, serverHost)
     elif uinp == "login":
         while True:
             login_username = input("Enter the username: ")
@@ -40,7 +39,7 @@ def handle_command(uinp):
             else:
                 print("The account doesn't exist on the device")
     elif uinp == "clear-inbox":
-        utils.clearInbox(username, serverHost)
+        user_email.clearInbox(username, serverHost)
     elif uinp == "exit":
         print("Bye!")
         exit(0)
@@ -48,6 +47,5 @@ def handle_command(uinp):
         print(Bcolors.ERROR + "Invalid command" + Bcolors.ENDC)
 
 
-
-if __name__=='__main__':
+if __name__ == "__main__":
     main()
