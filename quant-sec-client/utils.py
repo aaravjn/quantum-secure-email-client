@@ -4,7 +4,7 @@ import json
 import base64
 import user_email
 import requests
-
+from termcolors import Bcolors
 
 def help():
     with open("help.txt", "r") as f:
@@ -32,7 +32,7 @@ def create_account(serverHost):
         if response["Status"] == "Positive":
             break
         else:
-            print("The username already exists")
+            print(Bcolors.ERROR + "The username already exists" + Bcolors.ENDC)
 
     # Get a password from the user
     user_password = ""
@@ -43,7 +43,7 @@ def create_account(serverHost):
             user_password = pswd
             break
         else:
-            print("Passwords do not match")
+            print(Bcolors.ERROR + "Passwords do not match" + Bcolors.ENDC)
 
     # Create a directory to store user data
     parent_dir = os.path.expanduser("~")

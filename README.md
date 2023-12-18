@@ -20,17 +20,31 @@ The application workflow goes as follows. The User will fetch the public key of 
 
 
 ### Project setup Guide
-Install <strong>Rust</strong> and <strong>Cargo</strong> in your system. For Linux and MacOS, execute the below command. <br>
+You need to have the following packages in your system.
 ```
-curl https://sh.rustup.rs -sSf | sh
-```
-
-Import the project source code from github
-```
-git clone https://github.com/aaravjn/quantum-secure-email-client.git
+MySql
+Python == 3.7
+Docker
 ```
 
-Build and Run the Email by executing the following command in the `quant_sec_client` folder
+* `cd` into the project folder and run `pip install -r requirements.txt`
+
+* The `.env` file in `quant-sec-client` needs to be populated with:
+  - `HOST`: Your Mysql host, eg:- localhost.
+  - `USER`: Your Mysql username.
+  - `PASSWORD`: Your Mysql password.
+  - `DATABASE`: Your database name for the quantsec application.
+
+
+### Run the project
+The possible commands are the following:
 ```
-cargo run
-``` 
+~ create-account   : Creates a new user account. Generates a new CRYSTALS-Kyber key pair and registeres it in the global database.
+~ connect   : Connect to a email server by entering its Host domain.
+~ login   : Use an account existing on device.
+~ sync    : Retrives new emails from the inbox of the user stored in the server. The emails are always encrypted in the server.
+~ list-emails   : Lists recent emails from the inbox. :: -c [Number of emails to be shown. Default value = 5]
+~ compose   : Create and send a new email to a particular sender.
+~ clear-inbox   : Delete all the emails in your inbox
+~ exit  : Exit out of the application.
+```

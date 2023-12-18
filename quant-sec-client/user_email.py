@@ -26,7 +26,7 @@ def create_and_send_email(username, serverHost):
             params={"username": reciever},
         ).json()
         if response["Status"] == "Positive":
-            print("The reciever doesn't exist")
+            print(Bcolors.ERROR + "The reciever doesn't exist" + Bcolors.ENDC)
         else:
             break
 
@@ -62,7 +62,7 @@ def create_and_send_email(username, serverHost):
     if response["Status"] == "Positive":
         print(f"Succesfully sent the email to {reciever} from {username}")
     else:
-        print(response["Message"])
+        print(Bcolors.ERROR + response["Message"] + Bcolors.ERROR)
 
 
 def create_table(username):
@@ -70,7 +70,7 @@ def create_table(username):
         host=config["HOST"],
         user=config["USER"],
         password=config["PASSWORD"],
-        database="clientdatabase",
+        database=config["DATABASE"],
     )
 
     mycursor = mydb.cursor()
@@ -92,7 +92,7 @@ def show_emails(username, numberOfEmails=5):
         host=config["HOST"],
         user=config["USER"],
         password=config["PASSWORD"],
-        database="clientdatabase",
+        database=config["DATABASE"],
     )
     mycursor = mydb.cursor()
     mycursor.execute(
@@ -122,7 +122,7 @@ def sync_emails(username, serverHost):
         host=config["HOST"],
         user=config["USER"],
         password=config["PASSWORD"],
-        database="clientdatabase",
+        database=config["DATABASE"],
     )
     mycursor = mydb.cursor()
 
@@ -173,12 +173,6 @@ def sync_emails(username, serverHost):
             ('{email['sender']}', '{decrypted_subject}', '{decrypted_body}', '{datetime_of_arrival}');
             """
         )
-        print(
-            f"""
-            INSERT INTO {username} VALUES
-            ('{email['sender']}', '{decrypted_subject}', '{decrypted_body}', '{datetime_of_arrival}');
-            """
-        )
     mydb.commit()
     print("Succesfully synced all the emails")
 
@@ -210,7 +204,7 @@ def clearInbox(username, serverHost):
         host=config["HOST"],
         user=config["USER"],
         password=config["PASSWORD"],
-        database="clientdatabase",
+        database=config["DATABASE"],
     )
     mycursor = mydb.cursor()
     mycursor.execute(

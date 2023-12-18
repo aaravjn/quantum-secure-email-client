@@ -37,7 +37,7 @@ def handle_command(uinp):
                 username = login_username
                 break
             else:
-                print("The account doesn't exist on the device")
+                print(Bcolors.ERROR + "The account doesn't exist on the device" + Bcolors.ENDC)
     elif uinp == "clear-inbox":
         user_email.clearInbox(username, serverHost)
     elif uinp == "exit":

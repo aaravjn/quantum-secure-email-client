@@ -2,3 +2,4 @@ pycrypto
 pycryptodome
 requests
 mysql-connector-python
+Django
