@@ -35,6 +35,7 @@ Docker
   - `PASSWORD`: Your Mysql password.
   - `DATABASE`: Your database name for the quantsec application.
 
+* To use a prebuild server image, use this command `docker pull aaravjn/quantserver`
 
 ### Run the project
 The possible commands are the following:
