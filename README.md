@@ -37,7 +37,7 @@ Docker
 
 * To use a prebuild server image, use this command `docker pull aaravjn/quantserver`
 
-### Run the project
+### Usage guide
 The possible commands are the following:
 ```
 ~ create-account   : Creates a new user account. Generates a new CRYSTALS-Kyber key pair and registeres it in the global database.
@@ -48,4 +48,58 @@ The possible commands are the following:
 ~ compose   : Create and send a new email to a particular sender.
 ~ clear-inbox   : Delete all the emails in your inbox
 ~ exit  : Exit out of the application.
+```
+
+### Steps to send an email
+
+1. Connect to a Host server
+```
+> connect
+Please enter the host server domain: 0.0.0.0:8000
+```
+
+2. Create an account
+```
+> create-account
+Please enter your name: Aarav
+Please enter an unique user_name: aarav
+Please enter a password: 12345
+Please confirm the password: 12345
+Succesfully created the account
+```
+
+3. Login to your account
+```
+> login
+Enter the username: aarav
+```
+
+4. Send an email to a user with a known username (drac).
+```
+> compose
+Enter the reciever username: drac
+Enter the subject of matter: hi    
+Type your message: hi drac, How are you?
+Succesfully sent the email to drac from aarav
+```
+
+5. Sync the emails (from drac's device)
+```
+> sync
+Succesfully downloaded all the emails
+Decrypting downloaded emails
+Succesfully synced all the emails
+```
+
+6. List all the emails (in drac's device)
+```
+> list-emails
+aarav
+2023-12-21 18:56:25
+SUBJECT: hi
+
+hi drac, How are you?
+--------------------------------
+
+
 ```
