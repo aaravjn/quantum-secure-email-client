@@ -1,13 +1,13 @@
 # Quantum Secure Email Client
 
 ### Overview
-The problem with currently popular encryption algorithms is that their security relies on three hard mathematical problems which can be easily solved by a sufficiently powerful quantum computer running Shor's algorithm.<br>
+The problem with currently popular encryption algorithms is that their security relies on three complex mathematical problems which can be easily solved by a sufficiently powerful quantum computer running Shor's algorithm.<br>
 
-This repository contains a prototype of a Quantum secure email client which uses a modified version of the TLS algorithm to send peer-to-peer encrypted emails.<br>
+This repository contains a prototype of a Quantum secure email client that uses a modified TLS algorithm version to send peer-to-peer encrypted emails.<be>
 
 ### Flow Chart of the encryption algorithm
-![encryption](https://github.com/aaravjn/quantum-secure-email-client/assets/73699304/5b88d2ef-de78-4fdd-a14e-8363ab02c722)
-The above chart contains the encryption workflow when a Sender tries to send a message to a receiver. A mutually secret key is common among both parties which remains the same throughout a session and is shared using an asymmetric quantum secure algorithm, <strong>*Crystal-Kyber*</strong>. A message is sent to the receiver which may involve a server in between encrypted using a symmetric algorithm called <strong>*AES-256*</strong>. AES-256 is used because of its efficiency in encrypting extensive data. The encrypted message and the encrypted secret key are sent to the receiver along with a tag obtained from applying the MAC algorithm on the concatenation of both to verify whether the data was not tampered with.
+![encryption_decryption drawio(1)](https://github.com/aaravjn/quantum-secure-email-client/assets/73699304/49e6aa3d-b6c5-4afd-83b1-fdf06e6b0c02)
+The above chart contains the encryption workflow when a Sender tries to send a message to a receiver. A mutually secret key is common among both parties which remains the same throughout a session and is shared using an asymmetric quantum secure algorithm, <strong>*Crystal-Kyber*</strong>. A message is sent to the receiver, which may involve a server in between encrypted using a symmetric algorithm called <strong>*AES-256*</strong>. AES-256 is used because of its efficiency in encrypting extensive data. The encrypted message and the encrypted secret key are sent to the receiver along with a tag obtained from applying the MAC algorithm on the concatenation of both to verify whether the data was not tampered with.
 
 
 ### Flow Chat of the decryption algorithm.
@@ -16,7 +16,7 @@ The receiver takes the received encrypted message and the encrypted key to verif
 
 ### Application Workflow
 ![workflow](https://github.com/aaravjn/quantum-secure-email-client/assets/73699304/bd474c11-f5b2-48f2-bbdf-732d9efe279d) <br>
-The application workflow goes as follows. The User will fetch the public key of the receiver from the hosted database and send the encrypted data containing the encrypted message, encrypted secret key and a tag. The receiver will then use the email client to fetch the encrypted data from the database and decrypt the message.
+The application workflow goes as follows. The User will fetch the receiver's public key from the hosted database and send the encrypted data containing the encrypted message, encrypted secret key and a tag. The receiver will then use the email client to fetch the encrypted data from the database and decrypt the message.
 
 
 ### Project setup Guide
@@ -30,7 +30,7 @@ Docker
 * `cd` into the project folder and run `pip install -r requirements.txt`
 
 * The `.env` file in `quant-sec-client` needs to be populated with:
-  - `HOST`: Your Mysql host, eg:- localhost.
+  - `HOST`: Your Mysql host, e.g.:- localhost.
   - `USER`: Your Mysql username.
   - `PASSWORD`: Your Mysql password.
   - `DATABASE`: Your database name for the quantsec application.
@@ -62,10 +62,10 @@ Please enter the host server domain: 0.0.0.0:8000
 ```
 > create-account
 Please enter your name: Aarav
-Please enter an unique user_name: aarav
+Please enter a unique user_name: aarav
 Please enter a password: 12345
 Please confirm the password: 12345
-Succesfully created the account
+Successfully created the account
 ```
 
 3. Login to your account
