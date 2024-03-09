@@ -1,6 +1,6 @@
 import hashlib
 import crypto.aes as aes
-from crypto.crystals.kyber import Kyber512
+from crypto.crystal.kyber import Kyber512
 import json
 import base64
 import os
